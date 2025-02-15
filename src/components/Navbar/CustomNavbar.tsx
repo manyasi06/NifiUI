@@ -4,7 +4,13 @@ import { Link } from 'react-router-dom';
 
 const CustomNavbar: React.FC = () => {
     return (
-        <AppBar position="static">
+        <AppBar position="static"
+                sx={{
+                    backgroundColor: "rgba(255, 255, 255, 0.6)",
+                    backdropFilter: "blur(10px)",
+                    color: "#1E3A5F",
+                }}
+        >
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     MyApp

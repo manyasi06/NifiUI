@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { TextField, Button, Container, Typography, Box } from '@mui/material';
 
 const LoginPage: React.FC = () => {
     const formik = useFormik({
@@ -20,34 +21,41 @@ const LoginPage: React.FC = () => {
     });
 
     return (
-        <div className="login-page">
-            <h2>Login</h2>
-            <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        {...formik.getFieldProps('email')}
-                    />
-                    {formik.touched.email && formik.errors.email ? (
-                        <div>{formik.errors.email}</div>
-                    ) : null}
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        {...formik.getFieldProps('password')}
-                    />
-                    {formik.touched.password && formik.errors.password ? (
-                        <div>{formik.errors.password}</div>
-                    ) : null}
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <Container maxWidth="sm">
+            <Box sx={{ mt: 4 }}>
+                <Typography variant="h4" component="h1" gutterBottom>
+                    Login
+                </Typography>
+                <form onSubmit={formik.handleSubmit}>
+                    <Box sx={{ mb: 2 }}>
+                        <TextField
+                            fullWidth
+                            id="email"
+                            label="Email"
+                            variant="outlined"
+                            {...formik.getFieldProps('email')}
+                            error={formik.touched.email && Boolean(formik.errors.email)}
+                            helperText={formik.touched.email && formik.errors.email}
+                        />
+                    </Box>
+                    <Box sx={{ mb: 2 }}>
+                        <TextField
+                            fullWidth
+                            id="password"
+                            label="Password"
+                            type="password"
+                            variant="outlined"
+                            {...formik.getFieldProps('password')}
+                            error={formik.touched.password && Boolean(formik.errors.password)}
+                            helperText={formik.touched.password && formik.errors.password}
+                        />
+                    </Box>
+                    <Button color="primary" variant="contained" fullWidth type="submit">
+                        Login
+                    </Button>
+                </form>
+            </Box>
+        </Container>
     );
 };
 
